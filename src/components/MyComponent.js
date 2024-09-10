@@ -29,15 +29,23 @@ class MyComponent extends React.Component {
     //     // console.log(`Iam from`, this.state.address);
     // }
 
+    handleAddNewUser = (userObj) => {
+        this.setState({
+            listUser: [userObj, ...this.state.listUser]
+        })
+    }
+
 
 
     //jsx
     render() {
         return (
             <div>
-                <UserInfor />
+                <UserInfor handleAddNewUser={this.handleAddNewUser} />
                 <br />
-                <DisplayInfor listUser={this.state.listUser} />
+                <DisplayInfor
+                    listUser={this.state.listUser}
+                />
             </div>
         )
     }
