@@ -40,13 +40,13 @@ class MyComponent extends React.Component {
     //jsx
     render() {
         return (
-            <div>
+            <>
                 <UserInfor handleAddNewUser={this.handleAddNewUser} />
                 <br />
                 <DisplayInfor
                     listUser={this.state.listUser}
                 />
-            </div>
+            </>
         )
     }
 }
