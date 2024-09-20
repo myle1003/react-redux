@@ -8,6 +8,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (min-width: 1500px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 14000px !important;
+  }
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -54,7 +59,35 @@ code {
 
 .app-containter {
   .header-container {
-    .navbar-nav {
+    .btn-login {
+      border-radius: 5px;
+      margin-right: 15px;
+      padding: 0 15px;
+      border: 1px solid #535353;
+      height: 40px;
+    }
+
+    
+
+    .btn-singup {
+      border-radius: 5px;
+      margin-right: 15px;
+      padding: 0 15px;
+      background: #464646;
+      color: white;
+      height: 40px;
+
+
+      &:hover {
+        background: black;
+      }
+    }
+
+    .navbar {
+      padding-top: 20px;
+      z-index: 10;
+      background-color: rgba(0,0,0,0) !important;
+      // opacity: 10;
       .nav-link {
         &.active {
           color: #00bff0;
@@ -65,4 +98,44 @@ code {
     //   color: red;
     // }
   }
+  .homepage-container {
+    .homepage-content {
+      padding: 100px;
+      display: flex;
+      position: relative;
+      width: 50%;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .tilte-1 {
+      font-size: 35px;
+      font-weight: 600;
+    }
+
+    .tilte-2 {
+      font-size: 20px;
+    }
+
+    .tilte-3 {
+      button {
+        border-radius: 5px;
+        height: 40px;
+        background: #303030;
+        color: white;
+        height: 40px;
+
+        &:hover {
+          background: black;
+        }
+
+      }
+    }
+  }
+}
+
+video {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
 }
