@@ -14,6 +14,7 @@ import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } fro
 import sidebarBg from '../../assets/bg2.jpg';
 import { DiReact } from "react-icons/di";
 import { MdDashboard } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const SideBar = (props) => {
     const { image, collapsed, toggled, handleToggleSidebar } = props;
@@ -50,15 +51,18 @@ const SideBar = (props) => {
                             icon={<MdDashboard />}
                         >
                             Dashboard
+                            <Link to="/admin" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <SubMenu
                             icon={<FaGem />}
                             title="Features"
-
                         >
-                            <MenuItem> Quan ly user</MenuItem>
+                            <MenuItem>
+                                Quan ly user
+                                <Link to="/admin/manage-user" />
+                            </MenuItem>
                             <MenuItem> Quan ly bai quiz</MenuItem>
                             <MenuItem> QUan ly cau hoi</MenuItem>
                         </SubMenu>
