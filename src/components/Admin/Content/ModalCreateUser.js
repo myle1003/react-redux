@@ -1,10 +1,9 @@
-import { upload } from '@testing-library/user-event/dist/upload';
-import axios from 'axios';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc'
 import { toast } from 'react-toastify';
+import { postCreateNewUser } from '../../../services/apiServices';
 
 const ModalCreateUser = (props) => {
     const { show, setShow } = props;
@@ -52,31 +51,20 @@ const ModalCreateUser = (props) => {
             toast.error(`Password is required`);
             return;
         }
-        const data = new FormData();
-        data.append('email', email);
-        data.append('password', password);
-        data.append('username', username);
-        data.append('role', role);
-        data.append('userImage', image);
-        let res = await axios.post('http://localhost:8081/api/v1/participant', data);
 
-        if (res.data && res.data.EC === 0) {
-            toast.success(res.data.EM)
+        const data = await postCreateNewUser(email, password, username, role, image)
+
+        if (data && data.EC === 0) {
+            toast.success(data.EM)
             handleClose();
-            return;
+        } else {
+            toast.error(data.EM);
         }
-
-        toast.error(res.data.EM);
-        return;
 
     }
 
     return (
         <>
-            {/* <Button variant="primary" onClick={handleShow}>
-                Add new user
-            </Button> */}
-
             <Modal show={show} onHide={handleClose} size="xl" backdrop="static" className='modal-add-user'>
                 <Modal.Header closeButton>
                     <Modal.Title>Add new user</Modal.Title>
