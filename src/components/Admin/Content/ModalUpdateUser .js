@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc'
 import { toast } from 'react-toastify';
-import { postCreateNewUser } from '../../../services/apiServices';
+import { putUpdateUser } from '../../../services/apiServices';
 import _ from 'lodash';
 
 const ModalUpdateUser = (props) => {
@@ -16,6 +16,7 @@ const ModalUpdateUser = (props) => {
         setRole("USER")
         setImage("")
         setPreviewImage("")
+        props.resetUpdateData()
     }
 
     const [email, setEmail] = useState("");
@@ -47,26 +48,9 @@ const ModalUpdateUser = (props) => {
         }
     }
 
-    const validateEmail = (email) => {
-        return String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            );
-    };
+    const handleSubmitUpdateUser = async () => {
 
-    const handleSubmitCreateUser = async () => {
-        const isValisateEmain = validateEmail(email);
-        if (!isValisateEmain) {
-            toast.error(`Invalid email address`);
-            return;
-        }
-        if (!password) {
-            toast.error(`Password is required`);
-            return;
-        }
-
-        const data = await postCreateNewUser(email, password, username, role, image)
+        const data = await putUpdateUser(dataUpdate.id, username, role, image)
 
         if (data && data.EC === 0) {
             toast.success(data.EM)
@@ -154,7 +138,7 @@ const ModalUpdateUser = (props) => {
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
-                    <Button variant="primary" onClick={() => handleSubmitCreateUser()}>
+                    <Button variant="primary" onClick={() => handleSubmitUpdateUser()}>
                         Save Changes
                     </Button>
                 </Modal.Footer>

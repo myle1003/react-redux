@@ -5,11 +5,14 @@ import { useEffect, useState } from "react";
 import TableUser from "./TableUser";
 import { getAllUsers } from "../../../services/apiServices";
 import ModalUpdateUser from "./ModalUpdateUser ";
+import ModalDeleteUser from "./ModalDeleteUser";
 
 const ManageUser = () => {
     const [showModalCreateUser, setShowModalCreateUser] = useState(false);
     const [showModalUpdateUser, setShowModalUpdateUser] = useState(false);
+    const [showModalDeleteUser, setShowModalDeleteUser] = useState(false);
     const [dataUpdate, setDataUpdate] = useState({});
+    const [dataDelete, setDataDelete] = useState({});
 
     const [listUser, setListUser] = useState([])
 
@@ -27,9 +30,17 @@ const ManageUser = () => {
 
     const handleClickBtnUpdateUser = (user) => {
         setShowModalUpdateUser(true)
-        console.log("111l user", user);
         setDataUpdate(user)
 
+    }
+
+    const handleClickBtnDeleteUser = (user) => {
+        setShowModalDeleteUser(true)
+        setDataDelete(user)
+    }
+
+    const resetUpdateData = () => {
+        setDataUpdate({})
     }
 
 
@@ -51,7 +62,8 @@ const ManageUser = () => {
                     <TableUser
                         listUser={listUser}
                         setListUser={setListUser}
-                        handleClickBtnUpdateUser={handleClickBtnUpdateUser} />
+                        handleClickBtnUpdateUser={handleClickBtnUpdateUser}
+                        handleClickBtnDeleteUser={handleClickBtnDeleteUser} />
                 </div>
                 <ModalCreateUser
                     show={showModalCreateUser}
@@ -62,6 +74,15 @@ const ManageUser = () => {
                     show={showModalUpdateUser}
                     setShow={setShowModalUpdateUser}
                     dataUpdate={dataUpdate}
+                    fetchUserList={fetchUserList}
+                    resetUpdateData={resetUpdateData}
+                />
+                <ModalDeleteUser
+                    show={showModalDeleteUser}
+                    setShow={setShowModalDeleteUser}
+                    dataDelete={dataDelete}
+                    fetchUserList={fetchUserList}
+
                 />
             </div>
         </div>
