@@ -2,6 +2,19 @@
     .header {
         height: 45px;
         text-align: right;
+        padding: 5px 100px 0;
+        
+        button {
+            padding: 3px 15px;
+            margin-left: 15px;
+            border-radius: 5px;
+            background: #f9f9f9;
+            border: 1px solid black;
+
+            &:hover {
+                background: #cccccc;
+            }
+        }
     }
     .title {
         font-size: 25px;
@@ -23,13 +36,26 @@
         }
 
         button {
-            width: 50%;
+            width: 100%;
             height: 35px;
             border: none;
             margin: 20px 0;
             border-radius: 5px;
             color: white;
             background-color: black;
+            
+            &:hover {
+                background-color: #888888;
+            }
         }
+
+        .back {
+            text-align: center;
+            
+            .back-span {
+                cursor: pointer;
+            }
+        }
+
     }
 }
