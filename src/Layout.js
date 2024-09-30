@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import User from './components/User/User';
 import App from './App';
 import Admin from './components/Admin/Admin';
-import HomePage from './components/Home/Home';
+import HomePage from './components/Home/HomePage';
 import ManageUser from './components/Admin/Content/ManageUser';
 import Dashboard from './components/Admin/Content/Dashboard';
 import Login from './components/Auth/Login';
