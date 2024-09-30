@@ -7,7 +7,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const isAuthenticated = useSelector(state => state.user.isAuthenticated)
-    const account = useSelector(state => state.user.account)
     const navigate = useNavigate()
     const handleLogin = () => {
         navigate('/login')

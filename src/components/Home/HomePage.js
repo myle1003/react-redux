@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import videoHomepage from '../../assets/video-homepage.mp4';
 
 const HomePage = (props) => {
