@@ -5,19 +5,25 @@ import { postLogin } from '../../services/apiServices';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { doLogin, FETCH_USER_LOGIN_SUCCESS } from '../../redux/action/userAction';
+import { ImSpinner10 } from "react-icons/im";
+
 const Login = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleLogin = async () => {
+        setLoading(true)
         let data = await postLogin(email, password)
         if (data && +data.EC === 0) {
             dispatch(doLogin(data))
             toast.success(data.EM)
+            setLoading(false)
             navigate('/')
         } else {
             toast.error(data.EM);
+            setLoading(false)
         }
     }
 
@@ -63,7 +69,13 @@ const Login = (props) => {
                     <button
                         className='btn-submit'
                         onClick={() => handleLogin()}
-                    >Login</button>
+                        disabled={loading}
+                    >
+                        {loading && <ImSpinner10 className="loader-icon" />}
+                        <span>
+                            Login
+                        </span>
+                    </button>
                 </div>
                 <div className='back'>
                     <span
